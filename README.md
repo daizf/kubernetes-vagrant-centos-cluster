@@ -15,8 +15,7 @@ We will create a Kubernetes 1.9.1+ cluster with 3 nodes which contains the compo
 | IP           | Hostname | Componets                                |
 | ------------ | -------- | ---------------------------------------- |
 | 172.17.8.101 | node1    | kube-apiserver, kube-controller-manager, kube-scheduler, etcd, kubelet, docker, flannel, dashboard |
-| 172.17.8.102 | node2    | kubelet, docker, flannel、traefik         |
-| 172.17.8.103 | node3    | kubelet, docker, flannel                 |
+| 172.17.8.102 | node2    | kubelet, docker, flannel                 |
 
 The default setting will create the private network from 172.17.8.101 to 172.17.8.103 for nodes, and it will use the host's DHCP for the public ip.
 
@@ -240,11 +239,6 @@ vagrant ssh node1
 exit
 # login to node2
 vagrant ssh node2
-# run the prosivision scripts
-/vagrant/hack/k8s-init.sh
-exit
-# login to node3
-vagrant ssh node3
 # run the prosivision scripts
 /vagrant/hack/k8s-init.sh
 sudo -i

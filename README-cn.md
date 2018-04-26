@@ -20,8 +20,7 @@
 | IP           | 主机名   | 组件                                       |
 | ------------ | ----- | ---------------------------------------- |
 | 172.17.8.101 | node1 | kube-apiserver、kube-controller-manager、kube-scheduler、etcd、kubelet、docker、flannel、dashboard |
-| 172.17.8.102 | node2 | kubelet、docker、flannel、traefik           |
-| 172.17.8.103 | node3 | kubelet、docker、flannel                   |
+| 172.17.8.102 | node2 | kubelet、docker、flannel                   |
 
 **注意**：以上的IP、主机名和组件都是固定在这些节点的，即使销毁后下次使用vagrant重建依然保持不变。
 
@@ -34,7 +33,7 @@ Kubernetes service IP范围：10.254.0.0/16
 安装完成后的集群包含以下组件：
 
 - flannel（`host-gw`模式）
-- kubernetes dashboard 1.8.2
+- kubernetes dashboard 1.8.3
 - etcd（单节点）
 - kubectl
 - CoreDNS
@@ -240,11 +239,6 @@ vagrant ssh node1
 exit
 # login to node2
 vagrant ssh node2
-# run the prosivision scripts
-/vagrant/hack/k8s-init.sh
-exit
-# login to node3
-vagrant ssh node3
 # run the prosivision scripts
 /vagrant/hack/k8s-init.sh
 sudo -i

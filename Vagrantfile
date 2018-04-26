@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
    vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000 ]
   end
 
-  $num_instances = 3
+  $num_instances = 2 
 
   # curl https://discovery.etcd.io/new?size=3
   $etcd_cluster = "node1=http://172.17.8.101:2380"
@@ -222,7 +222,6 @@ EOF
         cp /vagrant/conf/admin.kubeconfig ~/.kube/config
 
         if [[ $1 -eq 1 ]];then
-          echo "configure master and node1"
 
           cp /vagrant/conf/apiserver /etc/kubernetes/
           cp /vagrant/conf/config /etc/kubernetes/
@@ -249,20 +248,7 @@ EOF
         fi
 
         if [[ $1 -eq 2 ]];then
-          echo "configure node2"
           cp /vagrant/node2/* /etc/kubernetes/
-
-          systemctl daemon-reload
-
-          systemctl enable kubelet
-          systemctl start kubelet
-          systemctl enable kube-proxy
-          systemctl start kube-proxy
-        fi
-
-        if [[ $1 -eq 3 ]];then
-          echo "configure node3"
-          cp /vagrant/node3/* /etc/kubernetes/
 
           systemctl daemon-reload
 
